@@ -140,7 +140,7 @@ p, li, a {
 
 @media screen and (min-width: 376px) {
     .member-list {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
     }
 
     .menu-right {
@@ -173,6 +173,10 @@ p, li, a {
 @media screen and (min-width: 768px) {
     .logo {
         width: 100%;
+    }
+    .member-list{
+        grid-template-columns: 1fr 1fr;
+
     }
 }
 
