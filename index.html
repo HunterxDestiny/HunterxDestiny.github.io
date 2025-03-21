@@ -3,63 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HunterDesti - Your destination for news, maps, and items.">
     <link rel="stylesheet" href="main.css">
     <title>HunterDesti</title>
 </head>
 <body>
+    <div class="loading">
+        <h1>
+            <a href="" class="typewrite" data-period="2000" data-type='[ "HUNTER DESTINY..." ]'>
+                <span class="wrap"></span>
+            </a>
+        </h1>
+    </div>
     <header>
-        <nav>
+        <nav aria-label="Main Navigation">
             <ul>
                 <li><a href="index.html">Home</a></li>
             </ul>
             <div class="logo">
-                <img src="./assets/logo.svg" alt="Logo">
+                <img src="./assets/logo.svg" alt="HunterDesti Logo">
             </div>
             <ul class="menu-right">
                 <li><a href="#">News</a></li>
                 <li><a href="#">Map</a></li>
                 <li><a href="#">Items</a></li>
             </ul>
-            <img src="./assets/menu-burger.svg" class="menu-burger" alt="Menu Burger">
+            <img src="./assets/menu-burger.svg" class="menu-burger" alt="Menu Button">
         </nav>
     </header>
-    <div class="hero">
-        <img src="./assets/hxhbanner 1.svg" alt="banner-art made by">
-    </div>
+
+    <section class="hero">
+        <img src="./assets/hxhbanner 1.svg" alt="Banner Art" loading="lazy">
+    </section>
+
     <main>
         <section class="member-list">
-            <div class="project-member">
-                <img src="./assets/boss.svg" alt="project-member">
-                <p>SISOX CHEFFFFFFFFFFF</p>
-            </div>
-            <div class="project-member">
-                <img src="./assets/webdev.svg" alt="project-member">
-                <p>SISOX CHEFFFFFFFFFFF</p>
-            </div>
-            <div class="project-member">
-                <img src="./assets/boss.svg" alt="project-member">
-                <p>SISOX CHEFFFFFFFFFFF</p>
-            </div>
-            <div class="project-member">
-                <img src="./assets/boss.svg" alt="project-member">
-                <p>SISOX CHEFFFFFFFFFFF</p>
-            </div>
+            <article class="project-member">
+                <div class="member-pfp" id="boss"></div>
+                <p>SISOX CHEF</p>
+            </article>
+            <article class="project-member">
+                <div class="member-pfp" id="esclave"></div>
+                <p>SISOX CHEF</p>
+            </article>
+            <article class="project-member">
+                <div class="member-pfp" id="member1"></div>
+                <p>SISOX CHEF</p>
+            </article>
+            <article class="project-member">
+                <div class="member-pfp" id="member2"></div>
+                <p>SISOX CHEF</p>
+            </article>
         </section>
     </main>
+
     <footer>
         <section class="infos">
-            <p>Lorem ipsum dolem oniris.</p>
-            <p>Lorem ipsum dolem oniris.</p>
-            <p>Lorem ipsum dolem oniris.</p>
+            <p>Lorem ipsum dolor sit amet.</p>
+            <p>Lorem ipsum dolor sit amet.</p>
+            <p>Lorem ipsum dolor sit amet.</p>
         </section>
         <section class="socials">
-            <h3>Socials:</h3>
+            <h3>Socials</h3>
             <div class="icons">
-                <a href="https://discord.gg/ByZJkWAk"><img src="./assets/discord.svg" alt="Discord"></a>
-                <a href="https://www.tiktok.com/@hunter_destiny1?is_from_webapp=1&sender_device=pc"><img src="./assets/tiktok.svg" alt="TikTok"></a>
-                <a href="#"><img src="./assets/roblox.svg" alt="Roblox"></a>
+                <a href="https://discord.gg/ByZJkWAk" aria-label="Discord">
+                    <img src="./assets/discord.svg" alt="Discord Icon">
+                </a>
+                <a href="https://www.tiktok.com/@hunter_destiny1" aria-label="TikTok">
+                    <img src="./assets/tiktok.svg" alt="TikTok Icon">
+                </a>
+                <a href="#" aria-label="Roblox">
+                    <img src="./assets/roblox.svg" alt="Roblox Icon">
+                </a>
             </div>
         </section>
     </footer>
+    <script>
+        window.onload = function() {
+            var messages = document.getElementsByClassName('loading');
+            for (var i = 0; i < messages.length; i++) {
+                messages[i].style.display = 'flex';
+            }
+            setTimeout(function() {
+                for (var i = 0; i < messages.length; i++) {
+                    messages[i].style.opacity = '0';
+                }
+                setTimeout(function() {
+                    for (var i = 0; i < messages.length; i++) {
+                        messages[i].style.display = 'none';
+                    }
+                }, 500);
+            }, 3500);
+
+            var elements = document.getElementsByClassName('typewrite');
+            for (var i = 0; i < elements.length; i++) {
+                var toRotate = elements[i].getAttribute('data-type');
+                var period = elements[i].getAttribute('data-period');
+                if (toRotate) {
+                    new TxtType(elements[i], JSON.parse(toRotate), period);
+                }
+            }
+            var css = document.createElement("style");
+            css.type = "text/css";
+            css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+            document.body.appendChild(css);
+        };
+
+        var TxtType = function(el, toRotate, period) {
+            this.toRotate = toRotate;
+            this.el = el;
+            this.loopNum = 0;
+            this.period = parseInt(period, 10) || 2000;
+            this.txt = '';
+            this.tick();
+            this.isDeleting = false;
+        };
+
+        TxtType.prototype.tick = function() {
+            var i = this.loopNum % this.toRotate.length;
+            var fullTxt = this.toRotate[i];
+
+            if (this.isDeleting) {
+                this.txt = fullTxt.substring(0, this.txt.length - 1);
+            } else {
+                this.txt = fullTxt.substring(0, this.txt.length + 1);
+            }
+
+            this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+            var that = this;
+            var delta = 200 - Math.random() * 100;
+
+            if (this.isDeleting) { delta /= 2; }
+
+            if (!this.isDeleting && this.txt === fullTxt) {
+                delta = this.period;
+                this.isDeleting = true;
+            } else if (this.isDeleting && this.txt === '') {
+                this.isDeleting = false;
+                this.loopNum++;
+                delta = 500;
+            }
+
+            setTimeout(function() {
+                that.tick();
+            }, delta);
+        };
+    </script>
 </body>
 </html>

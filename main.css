@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto:wght@100..900&display=swap');
 
 * {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -15,56 +15,17 @@ body {
     font-family: "Roboto", sans-serif;
 }
 
-.menu-right {
-    display: none;
+main {
+    margin-block: 70px;
 }
 
-.menu-burger {
-    display: block;
-}
-
-ul {
-    list-style-type: none;
-    display: flex;
-    gap: 25px;
-}
-
-img[alt] {
-    color: white;
-}
-
-li {
-    font-family: "Inter", sans-serif;
-    position: relative; /* Add relative positioning */
-}
-
-li::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    border-radius: 4px;
-    background-color: #ffffff;
-    bottom: 0;
-    left: 0;
-    transform-origin: right;
-    transform: scaleX(0);
-    transition: transform .2s ease-out;
-}
-
-li:hover::before {
-    transform-origin: left;
-    transform: scaleX(1);
-}
-
-a {
-    text-decoration: none;
-    color: white;
+p::selection, a::selection {
+    background-color: lightcoral;
 }
 
 header {
     width: 100%;
-    border-bottom: solid 2px white;
+    border-bottom: 2px solid white;
 }
 
 nav {
@@ -74,12 +35,78 @@ nav {
     align-items: center;
 }
 
-.logo img {
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+.loading h1, .loading span {
+    margin: 0;
+    text-align: center;
+    font-size:3em;
+    color: rgb(209, 140, 11);
+}
+
+.menu-right {
+    display: none;
+}
+
+.menu-burger {
+    display: block;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+li {
+    font-family: "Inter", sans-serif;
+    position: relative;
+}
+
+li::before {
+    content: '';
+    position: absolute;
     width: 100%;
+    height: 2px;
+    border-radius: 4px;
+    background-color: white;
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.2s ease-out;
+}
+
+li:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+a {
+    text-decoration: none;
+    color: white;
 }
 
 .logo {
     width: 60%;
+}
+
+.logo img {
+    width: 100%;
 }
 
 .hero {
@@ -103,20 +130,43 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.member-pfp {
+    border: 5px solid white;
+    border-radius: 50%;
+    transition: border-color 0.3s;
+    width: 200px;
+    height: 200px;
+}
+
+.member-pfp:hover {
+    animation: borderColorAnimation 3s linear infinite;
+}
+
+#boss {
+    background: center / cover url(./assets/✦✧.jpeg);
+}
+
+#esclave {
+    background: center / cover url(./assets/rohan.jpg);
 }
 
 footer {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 35px;
+    padding-block: 35px;
     justify-items: center;
     align-content: center;
     background-color: #141414;
     margin-top: 35px;
-    border-top: solid 2px white;
+    border-top: 2px solid white;
+    gap: 60px;
 }
 
-.infos {
+.infos, .socials {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -128,14 +178,24 @@ footer {
     gap: 15px;
 }
 
-.socials {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.icons img {
+    transition-duration: 1.2s;
+}
+
+.icons img:hover {
+    transform: rotate(360deg);
+    transition-duration: 0.6s;
 }
 
 p, li, a {
     font-size: 15px;
+}
+
+@keyframes borderColorAnimation {
+    0%, 100% { border-color: white; }
+    25% { border-color: #d9f6f8; }
+    50% { border-color: #BACDFF; }
+    75% { border-color: #B8B8B8; }
 }
 
 @media screen and (min-width: 376px) {
@@ -149,10 +209,6 @@ p, li, a {
 
     .menu-burger {
         display: none;
-    }
-
-    .logo {
-        width: 60%;
     }
 
     li, a {
@@ -174,9 +230,9 @@ p, li, a {
     .logo {
         width: 100%;
     }
-    .member-list{
-        grid-template-columns: 1fr 1fr;
 
+    .member-list {
+        grid-template-columns: 1fr 1fr;
     }
 }
 
