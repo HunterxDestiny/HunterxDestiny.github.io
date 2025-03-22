@@ -139,11 +139,17 @@ a {
     border-radius: 50%;
     transition: border-color 0.3s;
     width: 200px;
+    transition-duration: 1s;
     height: 200px;
 }
 
+.project-member p{
+    font-weight: 900;
+    font-size: 20px;
+}
 .member-pfp:hover {
-    animation: borderColorAnimation 3s linear infinite;
+    border-color: rgb(151, 199, 226);
+    transition-duration: 0.2s;
 }
 
 #boss {
@@ -152,6 +158,12 @@ a {
 
 #esclave {
     background: center / cover url(./assets/rohan.jpg);
+}
+#dev{
+    background: center / cover url(./assets/i_1e_af_e0_lebron-james.png);
+}
+#boss2{
+    background: center / cover url(./assets/main-qimg-0c28dc684667a98cf79df3c70b964499.png);
 }
 
 footer {
@@ -191,12 +203,6 @@ p, li, a {
     font-size: 15px;
 }
 
-@keyframes borderColorAnimation {
-    0%, 100% { border-color: white; }
-    25% { border-color: #d9f6f8; }
-    50% { border-color: #BACDFF; }
-    75% { border-color: #B8B8B8; }
-}
 
 @media screen and (min-width: 376px) {
     .member-list {
