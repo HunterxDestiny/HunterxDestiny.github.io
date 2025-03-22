@@ -160,10 +160,13 @@ a {
     background: center / cover url(./assets/rohan.jpg);
 }
 #dev{
+    border-color: red;
+
     background: center / cover url(./assets/i_1e_af_e0_lebron-james.png);
 }
 #boss2{
     background: center / cover url(./assets/main-qimg-0c28dc684667a98cf79df3c70b964499.png);
+    border-color: red;
 }
 
 footer {
